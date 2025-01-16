@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Test Times</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap');
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      background-color: #f4f4f4;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 2px solid #ddd;
+    }
+
+    header h1 {
+      font-family: 'UnifrakturMaguntia', cursive;
+      font-size: 120px;
+      font-weight: bold;
+      margin: 0;
+      letter-spacing: 2px;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .ticker {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+      font-size: 1rem;
+      width: 100%;
+      text-align: center;
+    }
+
+    .ticker span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: ticker 20s linear infinite;
+    }
+
+    @keyframes ticker {
+      from {
+        transform: translateX(100%);
+      }
+
+      to {
+        transform: translateX(-100%);
+      }
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 20px;
+      justify-content: center;
+      max-width: 100%;
+    }
+
+    .column {
+      flex: 1;
+      width: 400px;
+      border: 1px solid #ddd;
+      padding: 15px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+    }
+
+    .ad-slot {
+  text-align: center;
+  margin: 20px 0;
+  position: relative;
+  width: 300px;
+  height: 600px; /* Max grootte 300x600 */
+  overflow: hidden; /* Zorgt ervoor dat grotere inhoud niet uit de container valt */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffcaca; /* Optioneel, voor een achtergrondkleur */
+}
+
+.ad-slot-breed {
+  text-align: center;
+  margin: 20px 0;
+  position: relative;
+  width: 970px;
+  height: 250px;
+  overflow: hidden; /* Zorgt ervoor dat grotere inhoud niet uit de container valt */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffcaca; /* Optioneel, voor een achtergrondkleur */
+}
+
+.sticky-ad {
+  position: sticky;
+  top: 20px; /* Blijft plakken vanaf 20px van de bovenkant */
+  height: 600px; /* Past binnen de viewport */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #ffcaca; /* Optioneel, voor een achtergrondkleur */
+}
+
+    .ad-slot .fallback-message {
+      border: 1px solid #999;
+      padding: 10px;
+      background-color: #f4f4f4;
+      color: #333;
+      font-size: 0.9rem;
+      font-style: italic;
+      display: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      margin: 10px 0;
+    }
+
+    .afbeeldinguitlijning {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+    blockquote {
+      font-style: italic;
+      color: #555;
+      border-left: 3px solid #ddd;
+      padding-left: 10px;
+      margin: 15px 0;
+    }
+
+    .weather-widget {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-top: 20px;
+      text-align: center;
+      background-color: #f9f9f9;
+    }
+
+    .popup {
+  display: none; /* Verborgen totdat getoond */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8); /* Donkere overlay */
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  position: relative;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 90%;
+}
+
+.popup-close {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+}
+
+.weather-container {
+            text-align: center;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #weather {
+            margin-top: 10px;
+            font-size: 1.2em;
+            color: #333333;
+        }
+
+
+  </style>
+  <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+  <script>
+    window.googletag = window.googletag || { cmd: [] };
+    googletag.cmd.push(function () {
+      const slots = [
+      googletag.defineSlot('/6355419/Travel/Europe/France/Paris', [[728, 90], [970, 250], [1,1]], 'div-gpt-ad-2968736-1')
+          .addService(googletag.pubads()),
+        googletag.defineSlot('/6355419/Travel/Europe/France/Paris', [[300, 250], [728, 90], [970, 250], [160, 600]], 'div-gpt-ad-2968736-2')
+          .addService(googletag.pubads()),
+        googletag.defineSlot('/6355419/Travel/Europe/France/Paris', [[300, 250], [728, 90], [970, 250], [160, 600]], 'div-gpt-ad-2968736-3')
+          .addService(googletag.pubads())
+          /googletag.defineSlot('/6355419/Travel/Europe/France/Paris', [[300, 250], [728, 90], [970, 250], [160, 600]], 'div-gpt-ad-2968736-4')
+          .addService(googletag.pubads())
+          /googletag.defineSlot('/6355419/Travel/Europe/France/Paris', [[120,600], [160,600], [300,600]], 'sticky-ad')
+          .addService(googletag.pubads())
+          /googletag.defineSlot('/6355419/Travel/Europe/France/Paris', [[300,250]], 'div-gpt-ad-fullscreen')
+          .addService(googletag.pubads())
+      ];
+
+      googletag.pubads().addEventListener('slotRenderEnded', function (event) {
+        if (!event.isEmpty) return;
+        const fallback = document.querySelector(`#${event.slot.getSlotElementId()} .fallback-message`);
+        if (fallback) fallback.style.display = 'block';
+      });
+
+      googletag.pubads().enableSingleRequest();
+      googletag.enableServices();
+    });
+  </script>
+
+  <script>
+    setInterval(function () {
+      googletag.cmd.push(function () {
+        googletag.pubads().refresh();
+      });
+    }, 5000);
+  </script>
+
+</head>
+
+<body>
+  <header>
+    <h1>The Test Times</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">World</a>
+      <a href="#">Politics</a>
+      <a href="#">Sports</a>
+      <a href="#">Entertainment</a>
+    </nav>
+  </header>
+  <div class="ticker">
+    <span>📈 Altijd de nieuwste advertentietechnologieën op deze pagina. Blijf op de hoogte! 📈</span>
+  </div>
+
+  <div class="breedblok">
+  <div id="div-gpt-ad-2968736-1" class="ad-slot-breed">
+    <div class="fallback-message">Helaas, we kunnen je geen mooie advertentie laten zien op dit moment.</div>
+    <script>
+      googletag.cmd.push(function () { googletag.display('div-gpt-ad-2968736-1'); });
+    </script>
+  </div>
+</div>
+
+  <div class="container">
+    <div class="column">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel justo vel elit dictum facilisis. Vivamus
+        lacinia nisl ac libero commodo, ut sollicitudin sapien malesuada.</p>
+      <img src="https://picsum.photos/300/200.webp" alt="Placeholder Image" class="afbeeldinguitlijning">
+      <blockquote>"This is an example of a quote that stands out from the rest of the text."</blockquote>
+      <p>Praesent ultricies sapien id massa vulputate, vitae malesuada enim mollis. Donec at sem a odio sagittis
+        tincidunt.</p>
+      <div id="div-gpt-ad-2968736-2" class="ad-slot">
+        <div class="fallback-message">Helaas, we kunnen je geen mooie advertentie laten zien op dit moment.</div>
+        <script>
+          googletag.cmd.push(function () { googletag.display('div-gpt-ad-2968736-2'); });
+        </script>
+      </div>
+      <p>Nulla facilisi. Integer quis sollicitudin orci. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.</p>
+    </div>
+    <div class="column">
+      <p>Nam efficitur arcu nec ligula pharetra, in viverra arcu tempus. Proin venenatis diam eget dui pulvinar blandit.
+      </p>
+      <img src="https://picsum.photos/300/400.webp" alt="Placeholder Image" class="afbeeldinguitlijning">
+      <blockquote>"Another insightful quote to break up the content and provide emphasis."</blockquote>
+      <p>Nulla facilisi. Integer quis sollicitudin orci. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas.</p>
+      <div id="div-gpt-ad-2968736-3" class="ad-slot">
+        <div class="fallback-message">Helaas, we kunnen je geen mooie advertentie laten zien op dit moment.</div>
+        <script>
+          googletag.cmd.push(function () { googletag.display('div-gpt-ad-2968736-3'); });
+        </script>
+      </div>
+      <p>Curabitur vehicula nisi ut est aliquam, at egestas nulla posuere. Duis mollis felis id dolor ultricies, at
+        faucibus libero congue.</p>
+    </div>
+    <div class="column">
+      <p>Donec aliquam velit vel risus gravida, at lacinia justo consequat. Phasellus auctor non nisi ac efficitur.</p>
+      <img src="https://picsum.photos/100/350.webp" alt="Placeholder Image" class="afbeeldinguitlijning">
+      <blockquote>"A final quote to leave the reader with a lasting impression."</blockquote>
+      <p>Sed bibendum neque nec est tristique, nec bibendum nulla tristique. Cras fringilla arcu sit amet eros aliquam,
+        at convallis lorem interdum.</p>
+      <div class="weather-widget">
+        <h3>Weather in Amsterdam</h3>
+        <p>🌤 12°C, Partly Cloudy</p>
+        <p>Wind: 15 km/h NW | Humidity: 65%</p>
+      </div>
+      <div id="div-gpt-ad-2968736-4" class="ad-slot">
+        <div class="fallback-message">Helaas, we kunnen je geen mooie advertentie laten zien op dit moment.</div>
+        <script>
+          googletag.cmd.push(function () { googletag.display('div-gpt-ad-2968736-4'); });
+        </script>
+      </div>
+  </div>
+
+  <div class="column sticky-ad">
+    <div id="sticky-ad">
+      <div class="fallback-message">Helaas, we kunnen je geen mooie advertentie laten zien op dit moment.</div>
+      <script>
+        googletag.cmd.push(function () { googletag.display('sticky-ad'); });
+      </script>
+    </div>
+  </div>
+
+<div id="fullscreen-popup" class="popup">
+  <div class="popup-content">
+    <span id="close-popup" class="popup-close">&times;</span>
+    <div id="div-gpt-ad-fullscreen" class="ad-slot" style="width:300px; height:250px; margin: 0 auto;">
+      <script>
+        googletag.cmd.push(function () { googletag.display('div-gpt-ad-fullscreen'); });
+      </script>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Toon de pop-up na een vertraging
+  setTimeout(function() {
+    document.getElementById('fullscreen-popup').style.display = 'flex';
+  }, 10000); // Toon na 10 seconden
+
+  // Sluit de pop-up wanneer op de sluitknop wordt geklikt
+  document.getElementById('close-popup').addEventListener('click', function() {
+    document.getElementById('fullscreen-popup').style.display = 'none';
+  });
+</script>
+
+<div class="weather-container">
+  <h1>Current Weather</h1>
+  <div id="weather">
+      Loading weather data...
+  </div>
+</div>
+
+<script>
+  // Weatherstack API key
+  const apiKey = '57a4a865af2d0652bd08ffa1189256ee'; // Replace with your Weatherstack API key
+  const locationName = 'Harlingen, Netherlands';
+
+  // Fetch weather data
+  async function fetchWeather() {
+      try {
+          const response = await fetch(`http://api.weatherstack.com/current?access_key=${apiKey}&query=${locationName}`);
+          const data = await response.json();
+
+          if (data.success === false) {
+              document.getElementById('weather').innerText = 'Error fetching weather data.';
+              console.error(data.error);
+          } else {
+              const { temperature, weather_descriptions } = data.current;
+              const { name, country } = data.location;
+              document.getElementById('weather').innerHTML = `
+                  <p><strong>${name}, ${country}</strong></p>
+                  <p>${weather_descriptions[0]}</p>
+                  <p>Temperature: ${temperature}°C</p>
+              `;
+          }
+      } catch (error) {
+          console.error('Error:', error);
+          document.getElementById('weather').innerText = 'Failed to fetch weather data.';
+      }
+  }
+
+  // Call the function
+  fetchWeather();
+</script>
+
+</body>
+
+</html>
